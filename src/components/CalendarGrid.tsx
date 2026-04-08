@@ -99,7 +99,10 @@ export default function CalendarGrid({
             >
               {/* Festival background pill */}
               {hasFestival && !isEdge && isCurrentMonth && (
-                <div className={`absolute inset-1 rounded-lg ${festColors?.bg} opacity-80`} />
+                <div
+                  className={`absolute inset-0.5 rounded-lg ${festColors?.bg}`}
+                  style={{ opacity: 1 }}
+                />
               )}
 
               {/* Date number */}

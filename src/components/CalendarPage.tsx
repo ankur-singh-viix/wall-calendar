@@ -1,22 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CalendarShell from "./CalendarShell";
 import CalendarGrid from "./CalendarGrid";
 import NotesPanel from "./NotesPanel";
 import AddCustomDateModal from "./AddCustomDateModal";
 import CalendarLegend from "./CalendarLegend";
+import InfoPanel from "./InfoPanel";
 import { useDateRange } from "@/hooks/useDateRange";
 import { useMonthTransition } from "@/hooks/useMonthTransition";
 import { format } from "date-fns";
 
 export default function CalendarPage() {
-  const today = new Date();
-  const [month, setMonth] = useState(today.getMonth());
-  const [year,  setYear]  = useState(today.getFullYear());
+  const [mounted, setMounted] = useState(false);
+  const [today,   setToday]   = useState<Date>(new Date(2000, 0, 1)); // safe placeholder
+  const [month,   setMonth]   = useState(0);
+  const [year,    setYear]    = useState(2000);
+
+  // Only run on client — fixes hydration mismatch
+  useEffect(() => {
+    const now = new Date();
+    setToday(now);
+    setMonth(now.getMonth());
+    setYear(now.getFullYear());
+    setMounted(true);
+  }, []);
+
   const { range, hoverDate, setHoverDate, handleDayClick, clearRange } = useDateRange();
-  const [showModal,   setShowModal]   = useState(false);
-  const [refreshKey,  setRefreshKey]  = useState(0);
+  const [showModal,  setShowModal]  = useState(false);
+  const [refreshKey, setRefreshKey] = useState(0);
   const { direction, animating, trigger } = useMonthTransition();
 
   function handlePrev() {
@@ -34,8 +46,10 @@ export default function CalendarPage() {
   }
 
   function goToday() {
-    const dir = (year < today.getFullYear() ||
-      (year === today.getFullYear() && month < today.getMonth())) ? "left" : "right";
+    const dir =
+      year < today.getFullYear() ||
+      (year === today.getFullYear() && month < today.getMonth())
+        ? "left" : "right";
     trigger(dir, () => {
       setMonth(today.getMonth());
       setYear(today.getFullYear());
@@ -45,14 +59,26 @@ export default function CalendarPage() {
   const isCurrentMonth =
     month === today.getMonth() && year === today.getFullYear();
 
-  // Animation classes
   const gridAnim = animating
     ? direction === "left"  ? "slide-out-left"
-    : direction === "right" ? "slide-out-right"
-    : ""
+    : direction === "right" ? "slide-out-right" : ""
     : direction === "left"  ? "slide-in-right"
-    : direction === "right" ? "slide-in-left"
-    : "";
+    : direction === "right" ? "slide-in-left"   : "";
+
+  // Show nothing until client mounts — prevents hydration mismatch
+  if (!mounted) {
+    return (
+      <div className="w-full max-w-5xl mx-auto flex items-center justify-center min-h-[60vh]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-8 h-8 rounded-full border-2 border-[var(--calendar-blue)]
+            border-t-transparent animate-spin" />
+          <p className="text-xs text-slate-400 tracking-widest uppercase">
+            Loading Calendar...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -68,7 +94,6 @@ export default function CalendarPage() {
               {format(today, "EEEE, MMMM d, yyyy")}
             </p>
           </div>
-
           <div className="flex items-center gap-2">
             {!isCurrentMonth && (
               <button onClick={goToday}
@@ -92,7 +117,7 @@ export default function CalendarPage() {
           </div>
         </div>
 
-        {/* Calendar */}
+        {/* Calendar shell */}
         <CalendarShell
           month={month} year={year}
           onPrev={handlePrev} onNext={handleNext}
@@ -114,8 +139,11 @@ export default function CalendarPage() {
           </div>
         </CalendarShell>
 
+        {/* Info Panel */}
+        <InfoPanel month={month} year={year} range={range} />
+
         {/* Footer */}
-        <div className="flex items-center justify-center gap-2 pt-1 pb-2">
+        <div className="flex items-center justify-center gap-2 pt-1 pb-4">
           <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
           <p className="text-[11px] text-slate-400 tracking-wider">
             Wall Calendar · Data saved locally

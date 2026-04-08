@@ -4,7 +4,7 @@
 
 ## 🌐 Live Demo
 
-🔗 **[wall-calendar.vercel.app](https://wall-calendar.vercel.app)** ← replace with your actual URL
+🔗 **[wall-calendar.vercel.app](https://wall-calendar-five-tau.vercel.app/)** 
 
 ---
 
@@ -88,7 +88,7 @@
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YOUR_USERNAME/wall-calendar.git
+https://github.com/ankur-singh-viix/wall-calendar.git
 
 # 2. Enter the project
 cd wall-calendar
@@ -201,8 +201,8 @@ vercel --prod
 ##  Author
 
 **Your Name**
-- GitHub: [@your-username](https://github.com/your-username)
-- Live: [wall-calendar.vercel.app](https://wall-calendar.vercel.app)
+- GitHub: [@your-username](https://github.com/ankur-singh-viix/wall-calendar)
+- Live: [wall-calendar.vercel.app](https://wall-calendar-five-tau.vercel.app/)
 
 ---
 

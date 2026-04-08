@@ -5,17 +5,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
 
 :root {
-  --calendar-blue: #2563eb;
+  --calendar-blue:       #2563eb;
   --calendar-blue-light: #eff6ff;
-  --calendar-accent: #f59e0b;
-  --calendar-bg: #f1f5f9;
-  --calendar-paper: #ffffff;
-  --calendar-text: #0f172a;
-  --calendar-muted: #94a3b8;
-  --calendar-border: #e2e8f0;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  --calendar-accent:     #f59e0b;
+  --calendar-bg:         #f1f5f9;
+  --calendar-paper:      #ffffff;
+  --calendar-text:       #0f172a;
+  --calendar-muted:      #94a3b8;
+  --calendar-border:     #e2e8f0;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.08),  0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg:  0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
 }
 
 * { box-sizing: border-box; }
@@ -27,28 +27,72 @@ body {
   min-height: 100vh;
 }
 
-h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
-}
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 
-/* Mobile touch targets */
+/* ── Page fade-in ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-up {
+  animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Month slide transitions ────────────────────────── */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0);     }
+}
+@keyframes slideOutLeft {
+  from { opacity: 1; transform: translateX(0);    }
+  to   { opacity: 0; transform: translateX(-28px); }
+}
+@keyframes slideOutRight {
+  from { opacity: 1; transform: translateX(0);   }
+  to   { opacity: 0; transform: translateX(28px); }
+}
+
+.slide-in-right  { animation: slideInRight  0.22s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.slide-in-left   { animation: slideInLeft   0.22s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.slide-out-left  { animation: slideOutLeft  0.22s cubic-bezier(0.4, 0, 1, 1) both; }
+.slide-out-right { animation: slideOutRight 0.22s cubic-bezier(0.4, 0, 1, 1) both; }
+
+/* ── Modal entrance ─────────────────────────────────── */
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);    }
+}
+.animate-modal-in {
+  animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Day cell hover pulse ───────────────────────────── */
+@keyframes dayCellPop {
+  0%   { transform: scale(1);    }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1);    }
+}
+.day-pop { animation: dayCellPop 0.18s ease-out; }
+
+/* ── Hero image Ken Burns ───────────────────────────── */
+@keyframes kenBurns {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.04); }
+}
+.hero-image {
+  animation: kenBurns 8s ease-in-out infinite alternate;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
-  .calendar-day {
-    height: 2.75rem;
-  }
-}
-
-/* Smooth transitions */
-.calendar-transition {
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Tooltip z-index safety */
-.festival-tooltip {
-  z-index: 9999;
+  .calendar-grid-cell { height: 2.5rem; }
 }

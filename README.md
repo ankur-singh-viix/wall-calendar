@@ -8,29 +8,29 @@
 
 ---
 
-## 📸 Preview
+##  Preview
 
 > *(Add a screenshot here after deploy — drag and drop into GitHub)*
 
 ---
 
-## ✨ Features
+##  Features
 
-### 🗓️ Calendar Core
+###  Calendar Core
 - Physical wall calendar aesthetic with **spiral binding** and paper shadow depth
 - **Hero image per month** with smooth Ken Burns zoom effect
 - **Month slide animations** — left/right transitions on navigation
 - Correct calendar grid for any month/year with **today highlighted**
 - **Today button** — jump back to current month from anywhere
 
-### 📅 Date Selection
+###  Date Selection
 - **Single date selection** with visual highlight
 - **Date range selection** — click start → click end
 - **Hover preview** — see the range before confirming
 - Clear button to reset selection
 - Range summary bar showing duration
 
-### 🎉 Festival System
+###  Festival System
 | Category | Examples |
 |---|---|
 | 🪔 Hindu | Diwali, Holi, Navratri, Janmashtami, Ganesh Chaturthi |
@@ -44,26 +44,26 @@
 - **Hover tooltip** with festival name + description
 - **Festival tags** auto-shown in Notes panel on selection
 
-### 📝 Notes
+###  Notes
 - Add notes to any **single date or date range**
 - **Edit** and **delete** notes inline
 - Persisted in **localStorage** — survives page refresh
 - All other dates' notes visible at bottom of panel
 
-### 📊 Info Panel *(collapsible)*
+###  Info Panel *(collapsible)*
 - **Days remaining** with visual progress bar
 - **Week numbers** for the month (W40, W41…)
 - **Mini month previews** — prev & next month with range overlay
 - **Upcoming festivals** — next 5 with countdown (Today / Tomorrow / 3d)
 - **Selected range card** — duration, weeks, weekdays, weekends, festivals inside range
 
-### 🎨 Custom Important Dates
+###  Custom Important Dates
 - Modal to mark any date as important
 - Choose category, emoji, name, description
 - **Yearly repeat toggle**
 - Shows on calendar like built-in festivals
 
-### 📱 Responsive Design
+###  Responsive Design
 | Screen | Layout |
 |---|---|
 | Desktop ≥ 1024px | Notes panel left + grid right, side by side |
@@ -72,7 +72,7 @@
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Tool | Version | Purpose |
 |---|---|---|
@@ -84,7 +84,7 @@
 
 ---
 
-## 🚀 Run Locally
+##  Run Locally
 
 ```bash
 # 1. Clone the repo
@@ -141,7 +141,7 @@ src/
 
 ---
 
-## 🎨 Design Decisions
+##  Design Decisions
 
 - **Plus Jakarta Sans** — clean, modern UI font with great readability
 - **Playfair Display** — editorial serif for headings, gives wall calendar feel
@@ -152,7 +152,7 @@ src/
 
 ---
 
-## 📦 Git Commit History
+##  Git Commit History
 
 | # | Commit | What was built |
 |---|---|---|
@@ -187,7 +187,7 @@ vercel --prod
 
 ---
 
-## 🔮 Future Enhancements
+##  Future Enhancements
 
 - [ ] Dark mode / seasonal themes
 - [ ] iCal / Google Calendar export
@@ -198,7 +198,7 @@ vercel --prod
 
 ---
 
-## 👤 Author
+##  Author
 
 **Your Name**
 - GitHub: [@your-username](https://github.com/your-username)
